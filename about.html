@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Contact </title>
+    <link rel="stylesheet" href="about.css"/>
+    <!-- Leaflet Js css link -->
+    <link rel="stylesheet" href="Leaflet/leaflet.css"/> 
+
+    <!-- Leaflet Js Script link -->
+    <script src="Leaflet/leaflet.js"></script>
+
+    <link rel="stylesheet" href="Leaflet/leaflet-control-geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <ul class="navbar">   
+            <li><a class="nav" href="home.html"> Home </a></li>
+            <li><a class="nav" href="webgis.html"> Map </a></li>
+            <li><a class="nav active" href="about.html"> About </a></li>
+            <li><a class="nav" href="contact.html"> Contact </a></li>
+            <li class="dropdown">
+                <a class="dropbtn"> Download </a>
+                <div class="dropdown-content">
+                    <a target="_blank" href="https://drive.google.com/file/d/1e13IxSi-YVgN9FZ5RRLg6PmM8cXL7qoy/view?usp=sharing"> Shp Rute Biskita </a>
+                    <a target="_blank" href="https://drive.google.com/file/d/1svd7RsCo4KRn4gcEdcLVRQa-cetU2fKu/view?usp=sharing"> Shp Halte Biskita</a>
+                </div>
+            </li>
+            <li class="login">
+                <a class="loginbtn" href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login </a>
+            </li>
+        </ul>
+        <script>
+        var nav = document.getElementsByClassName("nav");
+        for (var i = 0; i < nav.length; i++) {
+            nav[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+        </script>
+    </header>
+
+    <main>
+        <div class="box">
+            <div class="subbox1">
+                <!-- New subsubbox -->
+                <div class="sub-subbox1">
+                    <p class="profile-text"> M. Rifqi Naufal A </p>
+                </div>
+                <div class="sub-subbox2">
+                    <div class="subbox-profile">
+                        <span class="subbox-profile-image">
+                            <span class="univ">.</span>
+                            <span class="home">.</span>
+                            <span class="email">.</span>
+                            <span class="tel">.</span>
+                        </span>
+                        <span class="subbox-profile-text">
+                            <span>Universitas Pendidikan Indonesia</span>
+                            <span>Bogor, Indonesia</span>
+                            <span>rifqinaufalfayyadh@gmail.com</span>
+                            <span>081911075017</span>
+                        </span>
+                    </div>
+                    <div class="border-bottom"></div>
+                </div>  
+                <div class="sub-subbox4">
+                    <div id="map">
+                    <script>
+                        // Map initialization
+                        var map = L.map('map', {
+                            center: [-6.678886, 106.842411],
+                            zoom: 15,
+                            layers: []
+                        });
+
+                        // Marker Home Location
+                        var markerIcon = L.icon({
+                            iconUrl : 'Icon/marker-black.png',
+                            iconSize : [30, 32]
+                        });
+
+                        var marker = L.marker([-6.678886, 106.842411], {icon: markerIcon}).addTo(map);
+
+                        // Google Maps
+                        var GoogleMaps = new L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { opacity: 1.0,
+                        attribution: 'My Home'
+                        });
+                        
+                        GoogleMaps.addTo(map);
+                    
+                        // ----------------------------------------
+                        // Leaflet control geocoder
+                        L.Control.geocoder({
+                            position: "topleft",
+                            collapsed: true
+                        }).addTo(map);
+                    
+                    </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subbox2">
+                <h2 class="main-title"><i class="icon"></i>  Education </h2>
+
+                <div class="education">
+                    <h3 class="title"> Universitas Pendidikan Indonesia </h3>
+                    <h4 class="sub-title"><div class="calendar">.</div> 2020 - Current </h4>
+                    <p> Undergraduate of Sains Informasi Geografi  </p>
+                </div>
+                <div class="border-bottom"></div>
+
+                <div class="education">
+                    <h3 class="title"> Man 2 Kota Bogor </h3>
+                    <h4 class="sub-title"><div class="calendar">.</div> 2017 - 2020 </h4>
+                    <p> Senior High School </p>
+                </div>
+                <div class="border-bottom"></div>
+
+                <div class="education">
+                    <h3 class="title"> MTs Sahid </h3>
+                    <h4 class="sub-title"><div class="calendar">.</div> 2014 - 2017 </h4>
+                    <p> Juior High School </p>
+                </div>
+                <div class="border-bottom"></div>
+                <div class="education">
+                    <h3 class="title"> SDIT Raudhatul Jannah </h3>
+                    <h4 class="sub-title"><div class="calendar">.</div> 2008 - 2014 </h4>
+                    <p> Elementary School </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Login -->
+        <div id="id01" class="modal">
+  
+            <form class="modal-content animate" action="/action_page.php" method="post">
+              <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="Icon/login.png" alt="Avatar" class="avatar">
+              </div>
+          
+              <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+          
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                  
+                <button type="submit">Login</button>
+                <label>
+                  <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+              </div>
+          
+              <div class="container" style="background-color:var(--second-background)">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+              </div>
+            </form>
+          </div>
+          
+          <script>
+          // Get the modal
+          var modal = document.getElementById('id01');
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+              if (event.target == modal) {
+                  modal.style.display = "none";
+              }
+          }
+          </script>
+          
+    </main>
+
+    <footer>
+        <p> Find me on social media.</p>
+        <div class="socmed">
+            <a target="_blank" href="https://www.instagram.com/iqiiiiiiiiii/" class="instagram"></a>
+            <a target="_blank" href="https://www.facebook.com/rifqi.naufal.58760/" class="facebook"></a>
+            <a target="_blank" href="https://www.linkedin.com/in/mochammad-rifqi-naufal-alfayyadh-648771229/" class="linkedin"></a>
+        </div>
+    </footer>
+</body>
+
+
+</html>

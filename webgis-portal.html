@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="webgis-portal.css">
+</head>
+<body>
+    <!-- Section  -->
+    <section class="showcase">
+        <header>
+            <h2 class="logo">Travel</h2>
+            <div class="toggle" ></div>
+        </header>
+
+        <video src="street.mp4" muted loop autoplay ></video>
+
+        <!-- Blue effect for video using background colour -->
+        <div class="overlay"></div>
+
+        <div class="text">
+            <h2>Never stop</h2>
+            <h3>Exploring The World</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                voluptas amet! Eveniet voluptas voluptatem alias eum laborum.</p>
+            <a href="webgis.html" target="_blank"> Explore </a>
+        </div>
+
+    </section>
+
+    <div class="menu">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Destination</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    
+    <script>
+        const menuToggle = document.querySelector('.toggle')
+        const menuToggleDeactive = document.querySelector('.toggle.active')
+        const showcase = document.querySelector('.showcase')
+        const logo = document.querySelector('.logo')
+        const text = document.querySelector('.text')
+        const social = document.querySelector('.social')
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active')
+            showcase.classList.toggle('active')
+            logo.classList.toggle('active')
+            text.classList.toggle('active')
+            social.classList.toggle('active')
+        })
+
+        menuToggleDeactive.addEventListener('click', () => {
+            logo.classList.toggle('deactive')
+            text.classList.toggle('deactive')
+            social.classList.toggle('deactive')
+
+        })
+    </script>
+</body>
+</html>

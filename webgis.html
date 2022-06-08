@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Webgis </title>
+    <link rel="stylesheet" href="webgis.css"/>
+    <!-- Leaflet Js css link -->
+    <link rel="stylesheet" href="Leaflet/leaflet.css"/> 
+
+    <!-- Leaflet Js Script link -->
+    <script src="Leaflet/leaflet.js"></script>
+
+    <!-- Leaflet Js script link -->
+    <script src="GeoJson/rute_K1B.js"></script>
+    <script src="GeoJson/rute_K2B.js"></script>
+    <script src="GeoJson/rute_K5B.js"></script>
+    <script src="GeoJson/rute_K6B.js"></script>
+    <script src="GeoJson/halte.js"></script>
+
+    <!-- Leaflet Control Geocoder -->
+    <link rel="stylesheet" href="Leaflet/leaflet-control-geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <!-- Leaflet Coordinate -->
+    <link rel="stylesheet" href="Leaflet/leaflet-locatecontrol.css">
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+
+    <!-- Leaflet Control Zoombar -->
+    <link rel="stylesheet" type="text/css" href="Leaflet/L.Control.ZoomBar.css"/>
+    <script type="text/javascript" src="Leaflet/L.Control.ZoomBar.js"></script> 
+
+    <!-- Leaflet Scale -->
+    <script type="text/javascript" src="Leaflet/Leaflet.Coordinates-0.1.5.min.js"></script>
+    <link rel="stylesheet" href="Leaflet/Leaflet.Coordinates-0.1.5.css"/>
+
+    <!-- Leaflet Legend -->
+    <script type="text/javascript" src="Leaflet/leaflet.legend.js"></script>
+    <link rel="stylesheet" href="Leaflet/leaflet.legend.css" />
+</head>
+
+<body>
+    <div>
+        <ul class="navbar">   
+            <li><a class="nav" href="home.html"> Home </a></li>
+            <li><a class="nav active" href="webgis.html"> Map </a></li>
+            <li><a class="nav" href="about.html"> About </a></li>
+            <li><a class="nav" href="contact.html"> Contact </a></li>
+            <li class="dropdown">
+                <a class="dropbtn"> Download </a>
+                <div class="dropdown-content">
+                    <a target="_blank" href="https://drive.google.com/file/d/1e13IxSi-YVgN9FZ5RRLg6PmM8cXL7qoy/view?usp=sharing"> Shp Rute Biskita </a>
+                    <a target="_blank" href="https://drive.google.com/file/d/1svd7RsCo4KRn4gcEdcLVRQa-cetU2fKu/view?usp=sharing"> Shp Halte Biskita</a>
+                </div>
+            </li>
+            <li class="login">
+                <a class="loginbtn" href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login </a>
+            </li>
+        </ul>
+    </div>
+    <div id="map"> </div>
+
+            <!-- Login -->
+            <div id="id01" class="modal">
+  
+                <form class="modal-content animate" action="/action_page.php" method="post">
+                  <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <img src="Icon/login.png" alt="Avatar" class="avatar">
+                  </div>
+              
+                  <div class="container">
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+              
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+                      
+                    <button type="submit">Login</button>
+                    <label>
+                      <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                  </div>
+              
+                  <div class="container" style="background-color:var(--second-background)">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                  </div>
+                </form>
+              </div>
+              
+              <script>
+              // Get the modal
+              var modal = document.getElementById('id01');
+              
+              // When the user clicks anywhere outside of the modal, close it
+              window.onclick = function(event) {
+                  if (event.target == modal) {
+                      modal.style.display = "none";
+                  }
+              }
+              </script>
+</body>
+</html>
+
+<!-- Leaflet -->
+
+<script>
+    // Map initialization
+    var map = L.map('map', {
+        center: [-6.599425, 106.799622],
+        zoom: 13,
+        zoomControl: false,
+        layers: []
+    });
+
+    // Open Street Map
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+
+    // osm.addTo(map);
+
+    // Carto Dark
+    var carto_dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 20
+    });
+
+    carto_dark.addTo(map);
+
+
+    // Google Maps
+    var GoogleMaps = new L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { opacity: 1.0,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">Google Maps</a>'
+    });
+    
+    // GoogleMaps.addTo(map);
+
+    // ----------------------------------------
+    // Making layer control
+    var baseLayers = {
+        "<img class ='layer_img' src= 'Images/osm.png'/> <span class = 'layer_osm'>Open Street Map</span>" : osm,
+        "<img class ='layer_img' src= 'Images/carto_dark.png'/> <span class = 'layer_carto'> Carto Dark Map</span>" : carto_dark,
+        "<img class ='layer_img' src= 'Images/carto_dark.png'/> <span class = 'layer_gmaps'> Carto Dark Map</span>" : GoogleMaps
+    };
+
+    // Leaflet control geocoder
+    L.Control.geocoder({
+        position: "topleft",
+        collapsed: true
+    }).addTo(map);
+
+
+    /* GPS enabled geolocation control set to follow the user's location */
+    var locateControl = L.control.locate({
+    position: "topleft",
+    drawCircle: true,
+    follow: true,
+    setView: true,
+    keepCurrentZoomLevel: true,
+    markerStyle: {
+        weight: 1,
+        opacity: 0.8,
+        fillOpacity: 0.8
+    },
+    circleStyle: {
+        weight: 1,
+        clickable: false
+    },
+    icon: "fa fa-location-arrow",
+    metric: false,
+    strings: {
+        title: "My location",
+        popup: "You are within {distance} {unit} from this point",
+        outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
+    },
+    locateOptions: {
+        maxZoom: 18,
+        watch: true,
+        enableHighAccuracy: true,
+        maximumAge: 10000,
+        timeout: 10000
+    }
+    }).addTo(map);
+
+    // leaflet Control ZoomBar
+    var zoom_bar = new L.Control.ZoomBar({
+            position: 'topleft'
+        }).addTo(map);
+
+    // Leaflet.Coordinates
+    L.control.coordinates({
+            position: "bottomleft",
+            decimals: 2,
+            decimalSeperator: ",",
+            labelTemplateLat: "Latitude: {y}",
+            labelTemplateLng: "Longitude: {x}"
+        }).addTo(map);
+    /* scala */
+    L.control.scale({
+        metric: true,
+        position: "bottomleft"
+    }).addTo(map);
+    
+    // -------------------------------------------
+    // GeoJson
+    // K1B
+    var K1B_style = {
+        "color": "#f54e42",
+        "weight": 3,
+        "opacity": 1
+    };
+
+    var rute_K1B = L.geoJSON(K1B, {
+        style: K1B_style}).bindPopup(function (layer) {
+        return layer.feature.properties.name;
+    });
+
+    // K2B
+    var K2B_style = {
+        "color": "#63f542",
+        "weight": 3,
+        "opacity": 1
+    };
+
+    var rute_K2B = L.geoJSON(K2B, {
+        style: K2B_style}).bindPopup(function (layer) {
+        return layer.feature.properties.name;
+    });
+    
+    // K5B
+    var K5B_style = {
+        "color": "#4263f5",
+        "weight": 3,
+        "opacity": 1
+    };
+
+    var rute_K5B = L.geoJSON(K5B, {
+        style: K5B_style}).bindPopup(function (layer) {
+        return layer.feature.properties.name;
+    });
+
+    // K6B
+    var K6B_style = {
+        "color": "#bc42f5",
+        "weight": 3,
+        "opacity": 1
+    };
+
+    var rute_K6B = L.geoJSON(K6B, {
+        style: K6B_style}).bindPopup(function (layer) {
+        return layer.feature.properties.name;
+    });
+
+    // Halte 
+    var halte_icon = L.icon({
+        iconUrl: 'Icon/bus-green.png',
+        iconSize: [15, 15]
+    });
+
+    var halte_bus = L.geoJSON(halte, {
+        pointToLayer: function(feature,latlng){
+            var marker = L.marker(latlng,{icon: halte_icon});
+            marker.bindPopup(feature.properties.name);
+            return marker;
+            }
+    });
+
+    var overlayMaps = {
+        "Halte" : halte_bus,
+        "Rute K1B": rute_K1B,
+        "Rute K2B": rute_K2B,
+        "Rute K5B": rute_K5B,
+        "Rute K6B": rute_K6B
+    };
+
+    L.control.layers(baseLayers, {}, {collapsed: true}).addTo(map);
+    L.control.layers({}, overlayMaps, {collapsed: false}).addTo(map);
+
+    // Legend
+    const legend = L.control.Legend({
+            position: "bottomright",
+            title: "Keterangan",
+            collapsed: false,
+            symbolWidth: 24,
+            opacity: 1,
+            column: 1,
+            legends: [{
+                label: "Halte Bus",
+                type: "image",
+                url: "Icon/bus-green.png",
+            },{
+                label: "Rute K1B",
+                type: "polyline",
+                color: "#f54e42",
+                fillColor: "#f54e42",
+                weight: 2
+            },{
+                label: "Rute K2B",
+                type: "polyline",
+                color: "#63f542",
+                fillColor: "#63f542",
+                weight: 2
+            },{
+                label: "Rute K5B",
+                type: "polyline",
+                color: "#4263f5",
+                fillColor: "#4263f5",
+                weight: 2
+            },{
+                label: "Rute K6B",
+                type: "polyline",
+                color: "#bc42f5",
+                fillColor: "#bc42f5",
+                weight: 2
+            }]
+        })
+        .addTo(map);
+
+
+
+
+</script>

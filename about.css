@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --background : #111111;
+  --second-background : #222222;
+  --main : #2dffa8;
+  --secondary : #f4f4f4;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  margin : 0px;
+  padding : 0px;
+}
+
+/* Navbar */
+.navbar {
+  padding: 0px;
+  margin: 0px;
+  background-color: var(--background);
+  list-style: none;
+  overflow: hidden;
+}
+
+.navbar > li {
+  float: left;
+}
+
+.navbar > li > a.nav{
+  padding: 20px;
+  color: var(--main);
+  text-decoration: none;
+  display: block;
+}
+
+.navbar > li > a:hover:not(.active){
+  color: var(--background);
+  background-color: var(--main);
+  transition: .5s;
+}
+
+.navbar > li > .active {
+  border-bottom: 2px solid var(--main);
+  background-color: var(--background);
+}
+
+.navbar > li > a.active:hover {
+  color: var(--background);
+  background-color: var(--main);
+  transition: .5s;
+}
+
+/* Dropdown */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--background);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: var(--secondary);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown a{
+  padding: 20px;
+  color: var(--main);
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropbtn{
+  background-color: var(--main);
+  color: var(--background);
+  transition: .5s;
+}
+
+.dropdown-content a:hover {
+  border-left: solid 2px var(--main);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Login */
+
+.loginbtn {
+  background-image: url(Images/login.png);
+  background-size: 2em;
+  background-repeat: no-repeat;
+  background-position: 20px;
+  padding: 20px 20px 20px 70px;
+  color: var(--main);
+  text-decoration: none;
+  display: block;
+  position: absolute;
+  right: 0;
+}
+
+.loginbtn:hover{
+  background: url(Images/login-hover.png);
+  background-size: 2em;
+  background-repeat: no-repeat;
+  background-position: 20px;
+  color: var(--background);
+  background-color: var(--main);
+  transition: .5s;
+}
+
+/* box */
+
+.box {
+  margin : 20px ;
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  background-color: var(--background);
+}
+
+.subbox1 {
+  padding: 0px;
+  margin-right: 1em;
+  background-color: var(--main);
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  /* outline : solid 2px var(--secondary); */
+  height: fit-content;
+}
+/* Sub-subbox1 */
+.sub-subbox1 {
+  margin: 0;
+  padding: 0;
+  height: 300px;
+  display: flex;
+  flex-flow: column;
+  background: url(Images/profile.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0 -30px;
+  text-align: left;
+  justify-content: end;
+}
+
+.profile-text {
+  margin: 10px;
+  font-size: 24px;
+}
+
+/* Sub-subbox2 */
+.sub-subbox2 {
+  margin: 0;
+  padding: 0;
+}
+.subbox-profile {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  padding: 10px;
+}
+
+.subbox-profile > span > span {
+  display: block;
+  padding: 10px;
+
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--background);
+  margin: 0 20px;
+  opacity: .5;
+}
+
+/* Images for sub-subbox 2 */
+.univ {
+  background: url(Icon/univ.png);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+}
+
+.home {
+  background: url(Icon/home.png);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+}
+
+.email {
+  background: url(Icon/email.png);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+}
+
+.tel {
+  background: url(Icon/telephone.png);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+}
+
+
+/* Sub-subbox3 */
+.sub-subbox3   {
+  margin: 0px;
+  padding: 0px;
+  height: fit-content;
+
+}
+
+
+/* Sub-subbox4 */
+.sub-subbox4   {
+  margin: 0px;
+  padding: 0px;
+  height: fit-content;
+  display: flex;
+  flex-flow: column;
+;
+}
+#map {
+  margin: 20px;
+  height: 300px;
+  position: relative;
+
+
+}
+
+
+
+/* -------------------------------------------------------- */
+/* Subbox2 */
+.subbox2 {
+  padding: 20px;
+  margin-left: 1em;
+  height: fit-content;
+  background-color: var(--background);
+  color: var(--main);
+  box-shadow: 2px 2px 10px 2px var(--main);
+}
+
+.subbox2 > h2 {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.subbox2 h3 {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--secondary);
+}
+
+.subbox2 h4 {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.subbox2 p {
+  color: var(--secondary);
+}
+
+.subbox2 .main-title {
+  margin: 20px;
+  display: flex;
+  color: var(--main);
+}
+
+.icon {
+  background: url(Icon/square.png);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  margin-right: 20px;
+}
+
+.calendar{
+  background: url(Icon/calendar-green.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.education {
+  display: block;
+  flex-flow: column;
+  margin: 20px;
+  line-height: 20px;
+}
+
+.subbox2 .border-bottom {
+  border-bottom: 1px solid var(--secondary);
+  margin: 0 20px;
+  opacity: .5;
+}
+
+
+/* Footer */
+footer {
+  margin-top: 4em;
+  height: 30vh;
+  background-color: var(--second-background);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p {
+  color: var(--main);
+}
+
+.socmed {
+  display: flex;
+  align-items: center;
+}
+
+footer a {
+  width: 2em;
+  height: 2em;
+}
+
+.instagram {
+  background: url(Icon/instagram-green.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+.facebook {
+  background: url(Icon/facebook-green.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+.linkedin {
+  background: url(Icon/linkedin-green.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+/* Login modal page */
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background: var(--background);
+  color: var(--secondary);
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: var(--main);
+  color: var(--background);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 10%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+  background-color: var(--second-background);
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: var(--second-background);
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--main);
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}

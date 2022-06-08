@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Home </title>
+    <link rel="stylesheet" href="home-style.css"/>
+</head>
+
+<body>
+    <header>
+        <ul class="navbar">   
+            <li><a class="nav active" href="home.html"> Home </a></li>
+            <li><a class="nav" href="webgis.html"> Map </a></li>
+            <li><a class="nav" href="about.html"> About </a></li>
+            <li><a class="nav" href="contact.html"> Contact </a></li>
+            <li class="dropdown">
+                <a class="dropbtn"> Download </a>
+                <div class="dropdown-content">
+                    <a target="_blank" href="https://drive.google.com/file/d/1e13IxSi-YVgN9FZ5RRLg6PmM8cXL7qoy/view?usp=sharing"> Shp Rute Biskita </a>
+                    <a target="_blank" href="https://drive.google.com/file/d/1svd7RsCo4KRn4gcEdcLVRQa-cetU2fKu/view?usp=sharing"> Shp Halte Biskita</a>
+                </div>
+            </li>
+            <li class="login">
+                <a class="loginbtn" href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login </a>
+            </li>
+        </ul>
+        <script>
+        var nav = document.getElementsByClassName("nav");
+        for (var i = 0; i < nav.length; i++) {
+            nav[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+        </script>
+    </header>
+
+    <div class="showcase">
+        <video src="street.mp4" muted loop autoplay ></video>
+        <div class="text">
+            <h2>Bis Kita</h2>
+            <h3>Exploring Bogor</h3>
+            <p> Find your best route by Biskita at Kota Bogor
+            </p>
+            <a href="webgis.html" target="_blank"> Explore </a>
+        </div>
+    </div>
+
+    <!-- Login -->
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="Icon/login.png" alt="Avatar" class="avatar">
+            </div>
+        
+            <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+        
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+                
+            <button type="submit">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+            </div>
+        
+            <div class="container" style="background-color:var(--second-background)">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+        </div>
+        
+        <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        </script>
+</body>
+
+
+</html>
